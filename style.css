@@ -1,0 +1,477 @@
+
+/* ========================================
+   TEMA WARNA PINK ARCADE
+======================================== */
+
+:root {
+    --neon-pink: #d95f9a;
+    --neon-red: #e46996;
+    --neon-purple: #c77dff;
+    --bg-dark: #120817;
+    --hud-bg: #24102d;
+    --white: #ffffff;
+}
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
+
+    background-color: var(--bg-dark);
+
+    font-family: "Courier New", Courier, monospace;
+    color: var(--neon-pink);
+}
+
+/* ========================================
+   WRAPPER UTAMA
+======================================== */
+
+#game-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+
+    margin: 0 auto;
+}
+
+/* ========================================
+   CONTAINER GAME
+======================================== */
+
+#game-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    overflow: hidden;
+
+    background-color: var(--bg-dark);
+
+    border: 2px solid var(--neon-pink);
+
+    box-shadow:
+        0 0 10px rgba(255, 79, 163, 0.6),
+        0 0 25px rgba(255, 79, 163, 0.25);
+}
+
+/* ========================================
+   CANVAS
+======================================== */
+
+canvas {
+    display: block;
+
+    width: 100%;
+    flex: 1;
+
+    background-color: var(--bg-dark);
+
+    image-rendering: pixelated;
+}
+
+/* ========================================
+   HUD
+======================================== */
+
+#hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 15px;
+
+    background-color: var(--hud-bg);
+
+    border-bottom: 1px solid rgba(255, 79, 163, 0.35);
+
+    color: var(--neon-pink);
+
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+
+    text-shadow:
+        0 0 5px var(--neon-pink),
+        0 0 10px rgba(255, 79, 163, 0.5);
+}
+
+/* ========================================
+   OVERLAY START / GAME OVER
+======================================== */
+
+#overlay {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(67, 25, 82, 0.75),
+            rgba(18, 8, 23, 0.96)
+        );
+
+    z-index: 10;
+}
+
+/* ========================================
+   JUDUL GALAXIAN
+======================================== */
+
+#overlay h1 {
+    margin: 0;
+
+    color: var(--white);
+
+    font-size: clamp(48px, 14vw, 76px);
+    line-height: 1;
+
+    letter-spacing: 6px;
+
+    text-shadow:
+        0 0 5px var(--white),
+        0 0 12px var(--neon-pink),
+        0 0 25px var(--neon-pink),
+        0 0 45px rgba(255, 79, 163, 0.7);
+
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+/* ========================================
+   SUBTITLE
+======================================== */
+
+#overlay h2 {
+    margin: 12px 0 20px;
+
+    color: var(--neon-purple);
+
+    font-size: clamp(13px, 4vw, 20px);
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 5px var(--neon-purple),
+        0 0 12px var(--neon-purple);
+}
+
+/* ========================================
+   DESKRIPSI
+======================================== */
+
+#overlay p {
+    max-width: 320px;
+
+    margin: 0 0 28px;
+
+    color: #eadff0;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* ========================================
+   START GAME BUTTON
+======================================== */
+
+#start-btn {
+    min-width: 210px;
+
+    padding: 15px 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 79, 163, 0.15),
+            rgba(199, 125, 255, 0.15)
+        );
+
+    border: 2px solid var(--neon-pink);
+    border-radius: 10px;
+
+    color: var(--white);
+
+    font-family: "Courier New", Courier, monospace;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    text-shadow:
+        0 0 6px var(--white);
+
+    box-shadow:
+        0 0 10px rgba(255, 79, 163, 0.6),
+        inset 0 0 12px rgba(255, 79, 163, 0.1);
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#start-btn:hover {
+    transform: scale(1.05);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 79, 163, 0.35),
+            rgba(199, 125, 255, 0.25)
+        );
+
+    box-shadow:
+        0 0 12px var(--neon-pink),
+        0 0 30px rgba(255, 79, 163, 0.5);
+}
+
+#start-btn:active {
+    transform: scale(0.96);
+}
+
+/* ========================================
+   HIDDEN
+======================================== */
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================================
+   TOUCH CONTROLS
+======================================== */
+
+#touch-controls {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 15px;
+
+    background-color: var(--hud-bg);
+
+    border-top: 1px solid rgba(255, 79, 163, 0.25);
+}
+
+/* ========================================
+   D-PAD
+======================================== */
+
+.dpad {
+    display: flex;
+    gap: 10px;
+}
+
+/* ========================================
+   TOMBOL KONTROL
+======================================== */
+
+.ctrl-btn {
+    width: 70px;
+    height: 60px;
+
+    background-color: #24102d;
+
+    border: 2px solid var(--neon-pink);
+    border-radius: 10px;
+
+    color: var(--neon-pink);
+
+    font-family: "Courier New", Courier, monospace;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px rgba(255, 79, 163, 0.3);
+
+    text-shadow:
+        0 0 5px var(--neon-pink);
+
+    transition:
+        transform 0.1s ease,
+        background-color 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+.ctrl-btn:hover {
+    box-shadow:
+        0 0 14px rgba(255, 79, 163, 0.6);
+}
+
+.ctrl-btn:active,
+.ctrl-btn.active {
+    background-color: var(--neon-pink);
+
+    color: var(--bg-dark);
+
+    transform: scale(0.95);
+
+    box-shadow:
+        0 0 20px var(--neon-pink),
+        0 0 30px rgba(255, 79, 163, 0.5);
+
+    text-shadow: none;
+}
+
+/* ========================================
+   TOMBOL FIRE
+======================================== */
+
+.ctrl-btn.fire-btn {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    border-color: var(--neon-red);
+
+    color: var(--neon-red);
+
+    box-shadow:
+        0 0 12px rgba(255, 47, 125, 0.4);
+
+    text-shadow:
+        0 0 5px var(--neon-red);
+}
+
+.ctrl-btn.fire-btn:hover {
+    box-shadow:
+        0 0 16px var(--neon-red),
+        0 0 25px rgba(255, 47, 125, 0.4);
+}
+
+.ctrl-btn.fire-btn:active,
+.ctrl-btn.fire-btn.active {
+    background-color: var(--neon-red);
+
+    color: var(--bg-dark);
+
+    box-shadow:
+        0 0 20px var(--neon-red),
+        0 0 35px rgba(255, 47, 125, 0.6);
+
+    text-shadow: none;
+}
+
+/* ========================================
+   ANIMASI JUDUL
+======================================== */
+
+@keyframes titleGlow {
+    from {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    to {
+        transform: scale(1.03);
+        filter: brightness(1.15);
+    }
+}
+
+#gameCanvas {
+    visibility: hidden;
+}
+
+#gameCanvas.game-visible {
+    visibility: visible;
+}
+
+/* ========================================
+   RESPONSIVE MOBILE
+======================================== */
+
+@media (max-width: 430px) {
+
+    #hud {
+        padding: 9px 10px;
+
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    #overlay {
+        padding: 20px;
+    }
+
+    #overlay h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+    }
+
+    #overlay h2 {
+        margin-top: 10px;
+        margin-bottom: 18px;
+
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+
+    #overlay p {
+        max-width: 280px;
+
+        font-size: 12px;
+    }
+
+    #start-btn {
+        min-width: 185px;
+
+        padding: 13px 20px;
+
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .ctrl-btn {
+        width: 62px;
+        height: 56px;
+    }
+
+    .ctrl-btn.fire-btn {
+        width: 76px;
+        height: 76px;
+    }
+}
+
